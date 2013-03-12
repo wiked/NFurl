@@ -27,7 +27,7 @@ var nfurlobj = {
       return delTd;
     },
 
-    yep: function() {
+    showPopup: function() {
 
       chrome.tabs.getSelected(null,function(tab) {
         // do we have any GET params?
@@ -76,6 +76,12 @@ var nfurlobj = {
 
     delrow: function()
     {
+      var inps = document.getElementById(this.parentRow).getElementsByTagName("input");
+      // if we're removing the design = "yes" row, re-enable the button
+      if(inps[1].value == "design" && inps[2].value == "yes")
+      {
+        document.getElementById("nfurl_design_button").disabled = 0;
+      }
       document.getElementById(this.parentRow).remove();
     },
 
@@ -112,5 +118,5 @@ var nfurlobj = {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  nfurlobj.yep();
+  nfurlobj.showPopup();
 });
