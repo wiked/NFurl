@@ -27,6 +27,35 @@ var nfurlobj = {
       return delTd;
     },
 
+    makeBtn: function(txt, fx)
+    {
+      var btn = document.createElement("input");
+      btn.type = "submit";
+      btn.value = txt;
+      btn.onclick = fx;
+      return btn;
+    },
+    
+    getStringTable: function()
+    {
+      return document.getElementById("nfurl_getstring_table");
+    },
+
+    addNewRow: function(l,r)
+    {
+
+      var newTr = document.createElement('tr');
+      maxRow += 1;
+      newTr.id = "nfurl_row" + maxRow;
+
+      var newDelTd = nfurlobj.makeDelTd(maxRow);
+      newTr.appendChild(newDelTd);
+
+      newTr.appendChild(nfurlobj.createTd(l));
+      newTr.appendChild(nfurlobj.createTd(r));
+      nfurlobj.getStringTable().appendChild(newTr);
+    },
+
     showPopup: function() {
 
       chrome.tabs.getSelected(null,function(tab) {
@@ -70,6 +99,8 @@ var nfurlobj = {
           }
           btn2.onclick = function (){nfurlobj.addDesignYes();};
           document.body.appendChild(btn2);
+
+          document.body.appendChild(nfurlobj.makeBtn("+", function(){nfurlobj.addNewRow("","");}));
         }
       });
     },
