@@ -4,12 +4,14 @@
   "description": "Breaks up GET Params in URL",
   "version": "0.1",
 
+  "background": { "scripts": ["background.js"] },
+
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
   ],
   "browser_action": {
       "default_title": "NFurl It!",
-      "default_popup": "popup.html",
+      
       "default_icon": "icon.png"
   }
 }
